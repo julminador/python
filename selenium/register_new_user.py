@@ -4,7 +4,8 @@ from selenium import webdriver
 class RegsterNewUser(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path = './chromedriver')
+        self.driver = webdriver.Chrome(executable_path = r'./chromedriver.exe')
+        # self.driver = webdriver.Chrome(executable_path = './chromedriver')
         driver = self.driver
         driver.implicitly_wait(30)
         driver.maximize_window()
@@ -14,6 +15,9 @@ class RegsterNewUser(unittest.TestCase):
         driver = self.driver
         driver.find_element_by_xpath('/html/body/div/div[2]/header/div/div[2]/div/a').click()
         driver.find_element_by_link_text('Log In').click()
+
+        driver.find_element_by_id('details-button').click()
+        driver.find_element_by_id('proceed-link').click()
 
         create_account_button = driver.find_element_by_xpath('/html/body/div/div[2]/div[2]/div/div/div[2]/form/div/div[1]/div[2]/a')
         self.assertTrue(create_account_button.is_displayed() and create_account_button.is_enabled())
