@@ -14,15 +14,13 @@ class StartWeb(unittest.TestCase):
         driver.maximize_window()
         driver.implicitly_wait(10)
 
-    def growing_clickable(self):
+    def test_growing_clickable(self):
         driver = self.driver
         driver.get('https://testpages.herokuapp.com/styled/challenges/growing-clickable.html')
         grow_button = driver.find_element_by_id('growbutton')
-        # grow_button = WebDriverWait(driver, 10).until(
-        #     EC.presence_of_element_located((By.ID, "growbutton"))
-        # )
         time.sleep(5)
         grow_button.click()
+        time.sleep(2)
 
     @classmethod
     def tearDownClass(cls):
