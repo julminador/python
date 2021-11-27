@@ -2,15 +2,21 @@ from os import link
 import unittest
 import time
 from selenium import webdriver
+from webdriver_manager import chrome
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import ActionChains
 
 class use_select_unittest(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
+        # Ejecuta la automatizacion en segundo plano
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        # Se anade el argumento al self.driver
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
 

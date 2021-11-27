@@ -1,3 +1,7 @@
 venv/
 chromedriver
 chromedriver.exe
+dist/
+build/
+__pycache__/
+start.spec*
