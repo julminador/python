@@ -1,10 +1,11 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select # Submodulo  para usar el dropdown
+from webdriver_manager.chrome import ChromeDriverManager
 
 class LanguageOptions(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path = './chromedriver')
+        self.driver = webdriver.Chrome(ChromeDriverManager().install())
         driver = self.driver
         driver.implicitly_wait(30)
         driver.maximize_window()
