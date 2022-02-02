@@ -1,12 +1,9 @@
-import time
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-
 
 class close_shift(unittest.TestCase):
 
@@ -36,9 +33,12 @@ class close_shift(unittest.TestCase):
         end_shift_button.click()
         confirm_button = driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/button[2]')
         confirm_button.click()
-        driver.switch_to_alert().accept()
-
-        time.sleep(10)
+        try:
+            WebDriverWait(driver, 3).until(EC.alert_is_present())
+            alert = driver.switch_to.alert
+            alert.accept()
+        except TimeoutException:
+            print("no alert")
 
     def tearDown(self):
         self.driver.close()
